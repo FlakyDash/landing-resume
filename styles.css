@@ -402,7 +402,8 @@ a { color: inherit; }
   position: relative;
   display: grid;
   place-items: center;
-  aspect-ratio: 4 / 3;
+  /* 16:10 — пропорция самих скриншотов (1440×899), кадр не режется */
+  aspect-ratio: 16 / 10;
   border: 1px solid var(--line);
   border-radius: 3px;
   background-color: var(--bg-lift);
@@ -413,6 +414,12 @@ a { color: inherit; }
   );
   overflow: hidden;
   transition: border-color 0.35s var(--ease), transform 0.35s var(--ease);
+}
+
+.work__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .work:hover .work__frame {
@@ -576,6 +583,28 @@ a { color: inherit; }
   color: var(--ochre);
 }
 
+/* Второстепенные контакты под основной кнопкой */
+.contact__more {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  margin-top: 1.9rem;
+}
+
+.contact__more li {
+  display: inline-flex;
+  align-items: center;
+}
+
+.contact__more li:not(:last-child)::after {
+  content: "";
+  width: 4px;
+  height: 4px;
+  margin-inline: 1.3rem;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
 /* ---------- Футер ---------- */
 
 .footer {
@@ -702,6 +731,17 @@ a { color: inherit; }
     display: block;
     margin-left: 0;
     margin-top: 0.3rem;
+  }
+
+  /* контакты в столбик — точка-разделитель тут не нужна */
+  .contact__more {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9rem;
+  }
+
+  .contact__more li:not(:last-child)::after {
+    display: none;
   }
 }
 
