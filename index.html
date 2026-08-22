@@ -43,7 +43,7 @@
 
       <div class="hero__text">
         <h1 class="hero__title reveal" id="hero-title">
-          Веб-дизайнер: <em>от&nbsp;идеи до&nbsp;сайта</em> с Figma&nbsp;+ Claude&nbsp;Code
+          Веб-дизайнер: <em>от&nbsp;идеи до&nbsp;сайта</em><br>с Figma&nbsp;+ Claude&nbsp;Code
         </h1>
 
         <p class="hero__lead reveal">
@@ -72,147 +72,204 @@
   </section>
 
 
-  <!-- ============ 2. ЧЕМ ЗАНИМАЮСЬ СЕЙЧАС ============ -->
+  <!-- ============ 2. ЧЕМ ЗАНИМАЮСЬ СЕЙЧАС (без номера) ============ -->
   <section class="section section--now" id="now" aria-labelledby="now-title">
-    <div class="shell">
+    <div class="shell now__grid">
 
-      <div class="section__head">
-        <p class="eyebrow reveal"><span class="eyebrow__num">01</span> Сейчас</p>
-        <h2 class="section__title reveal" id="now-title">Чем занимаюсь сейчас</h2>
-      </div>
+      <!-- Фото зеркально hero: там портрет справа, здесь слева -->
+      <figure class="now__portrait reveal" data-placeholder="Фото">
+        <span class="now__ring" aria-hidden="true"></span>
+        <img src="assets/valeriya-2.jpg"
+             alt="Валерия Семенюк за работой"
+             width="1000" height="1250"
+             loading="lazy" decoding="async">
+      </figure>
 
-      <div class="now__body">
+      <div class="now__text">
+        <h2 class="section__title section__title--solo reveal" id="now-title">Чем занимаюсь сейчас</h2>
+
         <p class="prose reveal">
           Устала до бесконечности копировать и вставлять карточки товаров. Больше всего
-          в этой работе мне нравилось другое — верстать сайты: в YMGroup я делала сайты
-          для брендов музыкальных инструментов (kawai.kz, pioneerdj.kz, beyerdynamic.kz),
-          и это было моей любимой частью работы. Сейчас иду туда осознанно — погружаюсь
-          в Figma и Claude Code, прохожу курсы и осваиваю всё в кратчайшие сроки, потому
-          что наконец занимаюсь тем, что по-настоящему зажигает.
+          мне нравилось другое — верстать сайты: в YMGroup я делала сайты для крупных 
+          брендов музыкальных инструментов (kawai.kz, pioneerdj.kz, beyerdynamic.kz),
+          и я могла назвать свою работу любимой. Сейчас хочу вернуться в эту сферу — 
+          погружаюсь в Figma и Claude Code, прохожу курсы и осваиваю новые навыки 
+          в кратчайшие сроки, потому что наконец вновь занимаюсь тем, что по-настоящему зажигает.
         </p>
-
-        <ul class="skills reveal">
-          <li>Figma</li>
-          <li>No-code сайты</li>
-          <li>HTML5/CSS3</li>
-          <li>Claude Code</li>
-          <li>AI-инструменты</li>
-        </ul>
       </div>
-
-      <div class="works">
-        <figure class="work reveal">
-          <div class="work__frame">
-            <img src="assets/Landing-Yandex.png"
-                 alt="Макет лендинга Yandex Pet Day"
-                 width="1440" height="899" loading="lazy" decoding="async">
-          </div>
-          <figcaption class="work__caption">
-            <span class="work__name">Yandex Pet Day</span>
-            <span class="work__meta">Figma · макет</span>
-          </figcaption>
-        </figure>
-
-        <figure class="work reveal">
-          <div class="work__frame">
-            <img src="assets/Design-Keyberry.png"
-                 alt="Макет главной страницы KEYBERRY"
-                 width="1440" height="899" loading="lazy" decoding="async">
-          </div>
-          <figcaption class="work__caption">
-            <span class="work__name">Главная страница KEYBERRY</span>
-            <span class="work__meta">Figma · макет</span>
-          </figcaption>
-        </figure>
-      </div>
-
-      <p class="works__link reveal">
-        <a class="link" href="https://www.figma.com/design/hiru78xo3ewp2nG8RT1Ufs/For-test" target="_blank" rel="noopener noreferrer">
-          Посмотреть макеты в Figma
-          <span class="link__arrow" aria-hidden="true">↗</span>
-        </a>
-      </p>
 
     </div>
   </section>
 
 
-  <!-- ============ 3. БЭКГРАУНД ============ -->
-  <section class="section section--bg" id="background" aria-labelledby="bg-title">
+  <!-- ============ 3. БЕГУЩАЯ СТРОКА (без номера) ============ -->
+  <section class="marquee" aria-label="Чем могу быть полезна">
+    <div class="marquee__track">
+      <ul class="marquee__group">
+        <li>обновляю устаревшие сайты</li>
+        <li>создаю аккуратный визуал</li>
+        <li>помогаю с написанием текста</li>
+      </ul>
+      <!-- Копии для бесшовной петли. Одной мало: группа уже вьюпорта,
+           и в момент склейки справа появлялась бы пустая полоса.
+           Лента едет на -25%, то есть ровно на одну группу. -->
+      <ul class="marquee__group" aria-hidden="true">
+        <li>обновляю устаревшие сайты</li>
+        <li>создаю аккуратный визуал</li>
+        <li>помогаю с написанием текста</li>
+      </ul>
+      <ul class="marquee__group" aria-hidden="true">
+        <li>обновляю устаревшие сайты</li>
+        <li>создаю аккуратный визуал</li>
+        <li>помогаю с написанием текста</li>
+      </ul>
+      <ul class="marquee__group" aria-hidden="true">
+        <li>обновляю устаревшие сайты</li>
+        <li>создаю аккуратный визуал</li>
+        <li>помогаю с написанием текста</li>
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- ============ 4. ПОРТФОЛИО ============ -->
+  <section class="section section--portfolio" id="portfolio" aria-labelledby="pf-title">
     <div class="shell">
 
       <div class="section__head">
-        <p class="eyebrow reveal"><span class="eyebrow__num">02</span> Бэкграунд</p>
-        <h2 class="section__title reveal" id="bg-title">База, на которой всё держится</h2>
+        <p class="eyebrow reveal"><span class="eyebrow__num">01</span></p>
+        <h2 class="section__title reveal" id="pf-title">Портфолио</h2>
       </div>
 
-      <p class="prose reveal">
-        До дизайна я много лет отвечала за контент интернет-магазинов: <br>от карточек товара
-        до SEO-описаний и каталогов на десятки тысяч позиций.
-      </p>
+      <!-- ---- 4.1 Макеты в Figma ---- -->
+      <div class="pf__group">
+        <h3 class="subhead reveal">Макеты в Figma</h3>
 
-      <ul class="stats">
-        <li class="stat reveal">
-          <span class="stat__num">46&nbsp;000+</span>
-          <span class="stat__label">карточек товаров импортировано и обработано</span>
-        </li>
-        <li class="stat reveal">
-          <span class="stat__num">3&nbsp;000+</span>
-          <span class="stat__label">карточек создано вручную с нуля</span>
-        </li>
-        <li class="stat reveal">
-          <span class="stat__num">~200</span>
-          <span class="stat__label">видеороликов подготовлено к публикации</span>
-        </li>
-      </ul>
+        <div class="works">
+          <a class="work reveal"
+             href="https://www.figma.com/design/hiru78xo3ewp2nG8RT1Ufs/For-test?node-id=0-1"
+             target="_blank" rel="noopener noreferrer">
+            <span class="work__frame" data-placeholder="Скриншот макета">
+              <img src="assets/Landing-Yandex.png"
+                   alt="Макет лендинга Yandex Pet Day"
+                   width="1440" height="899" loading="lazy" decoding="async">
+            </span>
+            <span class="work__caption">
+              <span class="work__name">Лендинг для конференции Yandex Pet Day</span>
+              <span class="work__meta">Figma&nbsp;<span class="work__arrow" aria-hidden="true">↗</span></span>
+            </span>
+          </a>
 
-      <ol class="timeline">
-        <li class="tl reveal">
-          <p class="tl__years">2023–2026</p>
-          <div class="tl__body">
-            <h3 class="tl__place">ДН.РУ <span class="tl__city">Москва</span></h3>
-            <p class="tl__role">Контент-менеджер</p>
-            <p class="tl__desc">
-              Импорт и SEO-описания для каталога промышленного оборудования, обработка
-              технической документации, подготовка ~200 видео для VK Видео.
-            </p>
-          </div>
-        </li>
-        <li class="tl reveal">
-          <p class="tl__years">2018–2023</p>
-          <div class="tl__body">
-            <h3 class="tl__place">YMGroup <span class="tl__city">Алматы</span></h3>
-            <p class="tl__role">Контент-менеджер</p>
-            <p class="tl__desc">
-              Вёрстка сайтов на CS-Cart по дизайн-коду брендов (yam.kz, kawai.kz,
-              rolandmusic.kz), 3000+ карточек товаров вручную, баннеры в Photoshop,
-              работа с маркетплейсами Kaspi и Ozon.
-            </p>
-          </div>
-        </li>
-        <li class="tl reveal">
-          <p class="tl__years">2016–2018</p>
-          <div class="tl__body">
-            <h3 class="tl__place">GiperMusic <span class="tl__city">Санкт-Петербург</span></h3>
-            <p class="tl__role">Контент-менеджер</p>
-            <p class="tl__desc">
-              Наполнение каталога интернет-магазина, обработка изображений, анализ сайтов
-              конкурентов.
-            </p>
-          </div>
-        </li>
-      </ol>
+          <a class="work reveal"
+             href="https://www.figma.com/design/hiru78xo3ewp2nG8RT1Ufs/For-test?node-id=1-379"
+             target="_blank" rel="noopener noreferrer">
+            <span class="work__frame" data-placeholder="Скриншот макета">
+              <img src="assets/Design-Keyberry.png"
+                   alt="Макет главной страницы KEYBERRY"
+                   width="1440" height="899" loading="lazy" decoding="async">
+            </span>
+            <span class="work__caption">
+              <span class="work__name">Главная страница интернет-магазина KEYBERRY</span>
+              <span class="work__meta">Figma&nbsp;<span class="work__arrow" aria-hidden="true">↗</span></span>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- ---- 4.2 Сайты на Tilda ---- -->
+      <div class="pf__group">
+        <h3 class="subhead reveal">Сайты на Tilda</h3>
+
+        <div class="works">
+          <!-- TODO: Валерия пришлёт ссылки на Tilda-сайты -->
+          <!-- Когда ссылка появится: заменить <figure class="work"> на
+               <a class="work" href="…" target="_blank" rel="noopener noreferrer">
+               и закрывающий </figure> на </a> -->
+          <figure class="work work--soon reveal">
+            <span class="work__frame" data-placeholder="Скриншот сайта">
+              <img src="assets/portfolio/tilda-1.png"
+                   alt="Сайт на Tilda"
+                   width="1440" height="900" loading="lazy" decoding="async">
+            </span>
+            <figcaption class="work__caption">
+              <span class="work__name">Сайт на Tilda</span>
+              <span class="work__meta">Скоро</span>
+            </figcaption>
+          </figure>
+
+          <!-- TODO: Валерия пришлёт ссылки на Tilda-сайты -->
+          <figure class="work work--soon reveal">
+            <span class="work__frame" data-placeholder="Скриншот сайта">
+              <img src="assets/portfolio/tilda-2.png"
+                   alt="Сайт на Tilda"
+                   width="1440" height="900" loading="lazy" decoding="async">
+            </span>
+            <figcaption class="work__caption">
+              <span class="work__name">Сайт на Tilda</span>
+              <span class="work__meta">Скоро</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- ---- 4.3 Куча визуалов CS-Cart ---- -->
+      <div class="pf__group">
+        <h3 class="subhead reveal">Визуалы сайтов на CS-Cart</h3>
+
+        <div class="pile reveal">
+          <figure class="pile__item">
+            <span class="pile__frame" data-placeholder="CS-Cart 1">
+              <img src="assets/portfolio/cscart-1.png" alt="Архивный визуал сайта на CS-Cart, 1"
+                   draggable="false" loading="lazy" decoding="async">
+            </span>
+          </figure>
+          <figure class="pile__item">
+            <span class="pile__frame" data-placeholder="CS-Cart 2">
+              <img src="assets/portfolio/cscart-2.png" alt="Архивный визуал сайта на CS-Cart, 2"
+                   draggable="false" loading="lazy" decoding="async">
+            </span>
+          </figure>
+          <figure class="pile__item">
+            <span class="pile__frame" data-placeholder="CS-Cart 3">
+              <img src="assets/portfolio/cscart-3.png" alt="Архивный визуал сайта на CS-Cart, 3"
+                   draggable="false" loading="lazy" decoding="async">
+            </span>
+          </figure>
+          <figure class="pile__item">
+            <span class="pile__frame" data-placeholder="CS-Cart 4">
+              <img src="assets/portfolio/cscart-4.png" alt="Архивный визуал сайта на CS-Cart, 4"
+                   draggable="false" loading="lazy" decoding="async">
+            </span>
+          </figure>
+          <figure class="pile__item">
+            <span class="pile__frame" data-placeholder="CS-Cart 5">
+              <img src="assets/portfolio/cscart-5.png" alt="Архивный визуал сайта на CS-Cart, 5"
+                   draggable="false" loading="lazy" decoding="async">
+            </span>
+          </figure>
+          <figure class="pile__item">
+            <span class="pile__frame" data-placeholder="CS-Cart 6">
+              <img src="assets/portfolio/cscart-6.png" alt="Архивный визуал сайта на CS-Cart, 6"
+                   draggable="false" loading="lazy" decoding="async">
+            </span>
+          </figure>
+        </div>
+
+        <p class="pile__note reveal">
+          Я с нуля разрабатывала дизайн-системы для сайтов yam.kz, ymusic.kz, kawai.kz, rolandmusic.kz, beyerdynamic.kz, pioneerdj.kz К сожалению, большинство из них владелец не сохранил, и они уже не работают. Это все что  у меня осталось&nbsp;;(
+        </p>
+      </div>
 
     </div>
   </section>
 
 
-  <!-- ============ 4. ОБРАЗОВАНИЕ И ЯЗЫКИ ============ -->
+  <!-- ============ 5. ОБРАЗОВАНИЕ И ЯЗЫКИ ============ -->
   <section class="section section--edu" id="education" aria-labelledby="edu-title">
     <div class="shell">
 
       <div class="section__head">
-        <p class="eyebrow reveal"><span class="eyebrow__num">03</span> Образование</p>
+        <p class="eyebrow reveal"><span class="eyebrow__num">02</span> Образование</p>
         <h2 class="section__title reveal" id="edu-title">Образование и языки</h2>
       </div>
 
@@ -299,7 +356,7 @@
   </section>
 
 
-  <!-- ============ 5. НАВЫКИ ============ -->
+  <!-- ============ 6. НАВЫКИ (без номера) ============ -->
   <section class="section section--skills" aria-labelledby="skills-title">
     <div class="shell">
 
@@ -344,7 +401,77 @@
   </section>
 
 
-  <!-- ============ 6. КОНТАКТЫ ============ -->
+  <!-- ============ 7. БЭКГРАУНД ============ -->
+  <section class="section section--bg" id="background" aria-labelledby="bg-title">
+    <div class="shell">
+
+      <div class="section__head">
+        <p class="eyebrow reveal"><span class="eyebrow__num">03</span> Бэкграунд</p>
+        <h2 class="section__title reveal" id="bg-title">База, на которой всё держится</h2>
+      </div>
+
+      <p class="prose reveal">
+        До дизайна я много лет отвечала за контент интернет-магазинов: <br>от карточек товара
+        до SEO-описаний и каталогов на десятки тысяч позиций.
+      </p>
+
+      <ul class="stats">
+        <li class="stat reveal">
+          <span class="stat__num">46&nbsp;000+</span>
+          <span class="stat__label">карточек товаров импортировано и обработано</span>
+        </li>
+        <li class="stat reveal">
+          <span class="stat__num">3&nbsp;000+</span>
+          <span class="stat__label">карточек создано вручную с нуля</span>
+        </li>
+        <li class="stat reveal">
+          <span class="stat__num">~200</span>
+          <span class="stat__label">видеороликов подготовлено к публикации</span>
+        </li>
+      </ul>
+
+      <ol class="timeline">
+        <li class="tl reveal">
+          <p class="tl__years">2023–2026</p>
+          <div class="tl__body">
+            <h3 class="tl__place">ДН.РУ <span class="tl__city">Москва</span></h3>
+            <p class="tl__role">Контент-менеджер</p>
+            <p class="tl__desc">
+              Импорт и SEO-описания для каталога промышленного оборудования, обработка
+              технической документации, подготовка ~200 видео для VK Видео.
+            </p>
+          </div>
+        </li>
+        <li class="tl reveal">
+          <p class="tl__years">2018–2023</p>
+          <div class="tl__body">
+            <h3 class="tl__place">YMGroup <span class="tl__city">Алматы</span></h3>
+            <p class="tl__role">Контент-менеджер</p>
+            <p class="tl__desc">
+              Вёрстка сайтов на CS-Cart по дизайн-коду брендов (yam.kz, kawai.kz,
+              rolandmusic.kz), 3000+ карточек товаров вручную, баннеры в Photoshop,
+              работа с маркетплейсами Kaspi и Ozon.
+            </p>
+          </div>
+        </li>
+        <li class="tl reveal">
+          <p class="tl__years">2016–2018</p>
+          <div class="tl__body">
+            <h3 class="tl__place">GiperMusic <span class="tl__city">Санкт-Петербург</span></h3>
+            <p class="tl__role">Контент-менеджер</p>
+            <p class="tl__desc">
+              Наполнение каталога интернет-магазина, обработка изображений, анализ сайтов
+              конкурентов.
+            </p>
+          </div>
+        </li>
+      </ol>
+
+    </div>
+  </section>
+
+
+  <!-- ============ 8. КОНТАКТЫ ============ -->
   <section class="section section--contact" id="contact" aria-labelledby="contact-title">
     <div class="shell contact__grid">
 
