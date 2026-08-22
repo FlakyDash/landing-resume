@@ -207,3 +207,68 @@
     item.addEventListener("dragstart", function (e) { e.preventDefault(); });
   });
 })();
+
+
+/* =========================================================
+   Липкое верхнее меню: подложка при скролле и гамбургер
+   на узких экранах.
+   ========================================================= */
+
+(function () {
+  "use strict";
+
+  var nav = document.getElementById("nav");
+  if (!nav) return;
+
+  /* --- подложка появляется, как только страница сдвинулась --- */
+  var ticking = false;
+
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      nav.classList.toggle("is-stuck", window.scrollY > 8);
+      ticking = false;
+    });
+  }
+
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  /* --- гамбургер --- */
+  var burger = nav.querySelector(".nav__burger");
+  var menu = document.getElementById("nav-menu");
+  if (!burger || !menu) return;
+
+  function setOpen(open) {
+    nav.classList.toggle("is-open", open);
+    burger.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+
+  burger.addEventListener("click", function () {
+    setOpen(!nav.classList.contains("is-open"));
+  });
+
+  // клик по разделу — меню закрывается и не перекрывает якорь
+  menu.addEventListener("click", function (e) {
+    if (e.target.closest("a")) setOpen(false);
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && nav.classList.contains("is-open")) {
+      setOpen(false);
+      burger.focus();
+    }
+  });
+
+  // клик мимо меню закрывает его
+  document.addEventListener("click", function (e) {
+    if (!nav.classList.contains("is-open")) return;
+    if (!nav.contains(e.target)) setOpen(false);
+  });
+
+  // вернулись на широкий экран — панель больше не нужна
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 1180) setOpen(false);
+  });
+})();

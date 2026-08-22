@@ -43,7 +43,9 @@ body {
   font-size: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  /* clip, а не hidden: hidden делает body скролл-контейнером и ломает
+     position: sticky у верхнего меню, clip — нет */
+  overflow-x: clip;
 }
 
 h1, h2, h3, p, figure, ul, ol {
@@ -108,6 +110,183 @@ a { color: inherit; }
   border-radius: 2px;
 }
 
+/* Якоря не должны прятаться под липким меню */
+main > section {
+  scroll-margin-top: 5.5rem;
+}
+
+/* =========================================================
+   Липкое верхнее меню
+   ========================================================= */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.3s var(--ease),
+              border-color 0.3s var(--ease),
+              backdrop-filter 0.3s var(--ease);
+}
+
+/* при скролле — подложка, чтобы меню не сливалось с контентом */
+.nav.is-stuck {
+  background: rgba(27, 35, 22, 0.88);
+  backdrop-filter: blur(10px);
+  border-bottom-color: var(--line-soft);
+}
+
+.nav__inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: clamp(0.6rem, 1.1vw, 0.85rem);
+  width: 100%;
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding: 0.8rem var(--gutter);
+}
+
+.nav__brand {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.26rem 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.64rem;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.nav__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ochre);
+  flex: none;
+}
+
+.nav__menu {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.55rem, 1vw, 0.8rem);
+  margin-left: auto;
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.4rem, 0.7vw, 0.62rem);
+}
+
+.nav__links a {
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.25s var(--ease);
+}
+
+.nav__links a:hover {
+  color: var(--ink);
+}
+
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.45rem, 0.9vw, 0.6rem);
+}
+
+/* --- переключатель языка --- */
+
+.lang {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+  flex: none;
+}
+
+.lang__btn {
+  padding: 0.3rem 0.48rem;
+  font-family: inherit;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  transition: color 0.25s var(--ease), background-color 0.25s var(--ease);
+}
+
+.lang__btn:hover { color: var(--ink); }
+
+.lang__btn.is-active {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* --- главный CTA меню --- */
+
+.nav__cta {
+  padding: 0.5rem 0.72rem;
+  border-radius: 3px;
+  background: var(--accent);
+  color: var(--bg);
+  font-size: 0.735rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.25s var(--ease);
+}
+
+.nav__cta:hover { background: var(--ochre); }
+
+/* --- гамбургер (виден только на узких экранах) --- */
+
+.nav__burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 34px;
+  margin-left: auto;
+  padding: 0;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.nav__burger-line {
+  display: block;
+  width: 16px;
+  height: 1px;
+  margin-inline: auto;
+  background: var(--ink);
+  transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+
+.nav.is-open .nav__burger-line:first-child {
+  transform: translateY(3px) rotate(45deg);
+}
+
+.nav.is-open .nav__burger-line:last-child {
+  transform: translateY(-3px) rotate(-45deg);
+}
+
 /* =========================================================
    Типографика общих элементов
    ========================================================= */
@@ -151,6 +330,17 @@ a { color: inherit; }
 .prose {
   max-width: 58ch;
   color: var(--ink);
+}
+
+/* Акцентное слово внутри абзаца — тот же приём, что в заголовке hero.
+   Fraunces крупнее Inter при равном кегле, поэтому чуть уменьшен. */
+.prose em {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.06em;
+  color: var(--ochre);
 }
 
 .link {
@@ -867,6 +1057,41 @@ a.work:hover .work__arrow { transform: translate(2px, -2px); }
   padding-block: clamp(5rem, 11vw, 10rem);
 }
 
+/* Текст слева, компактный портрет справа — мельче, чем в hero */
+.contact__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 300px);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: end;
+}
+
+.contact__portrait {
+  position: relative;
+}
+
+.contact__portrait img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: 50% 28%;
+  border-radius: 3px;
+  filter: saturate(0.92) contrast(1.02);
+}
+
+.contact__portrait.is-missing {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background-color: var(--bg-lift);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--line-soft) 0 1px,
+    transparent 1px 11px
+  );
+}
+
 .contact__title {
   margin-top: 1.4rem;
   max-width: 20ch;
@@ -947,7 +1172,56 @@ a.work:hover .work__arrow { transform: translate(2px, -2px); }
    Адаптив
    ========================================================= */
 
+/* --- Меню сворачивается в гамбургер раньше остальной вёрстки:
+       шесть длинных названий разделов в строку уже не помещаются --- */
+@media (max-width: 1180px) {
+  .nav__burger { display: flex; }
+
+  .nav__menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: block;
+    padding: 1.25rem var(--gutter) 1.6rem;
+    background: var(--bg-lift);
+    border-bottom: 1px solid var(--line-soft);
+    box-shadow: 0 22px 40px -28px rgba(0, 0, 0, 0.9);
+  }
+
+  .nav:not(.is-open) .nav__menu { display: none; }
+
+  .nav__links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .nav__links a { font-size: 0.95rem; }
+
+  .nav__actions {
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line-soft);
+  }
+}
+
+@media (max-width: 620px) {
+  /* бейдж уезжает первым — он декоративный, а место нужно */
+  .nav__badge { display: none; }
+}
+
 @media (max-width: 900px) {
+  .contact__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .contact__portrait {
+    max-width: 260px;
+    margin-top: clamp(2.5rem, 6vw, 3.5rem);
+  }
+
   .hero__grid {
     grid-template-columns: minmax(0, 1fr);
   }
