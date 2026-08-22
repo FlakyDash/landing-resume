@@ -60,11 +60,9 @@ var I18N = {
     "edu.title":       "Образование и языки",
     "edu.formal":      "Формальное образование",
     "edu.uni":         "Омский государственный университет им. Ф. М. Достоевского",
-    "edu.uniCity":     "Омск",
     "edu.uniRole":     "Бакалавр",
     "edu.uniDesc":     "Бухгалтерский учёт, анализ и аудит.",
-    "edu.college":     "Химико-механический колледж",
-    "edu.collegeCity": "Павлодар",
+    "edu.college":     "Павлодарский химико-механический колледж",
     "edu.collegeRole": "Среднее профессиональное",
     "edu.collegeDesc": "Техник-технолог химической промышленности.",
     "edu.courses":     "Курсы",
@@ -139,7 +137,7 @@ var I18N = {
     "nav.cta":        "Message on Telegram",
 
     /* --- Hero --- */
-    "hero.title": "No-code web designer: <em>from&nbsp;idea to&nbsp;site</em><br>with Figma&nbsp;+ Claude&nbsp;Code",
+    "hero.title": "Web designer: <em>from&nbsp;idea to&nbsp;site</em><br>with Figma&nbsp;+ Claude&nbsp;Code",
     "hero.lead":  "For ten years I built product catalogs and content for online stores — now I'm putting that eye for detail into creating sites and interfaces myself: in Figma, without code, with the help of AI tools.",
 
     /* --- Чем занимаюсь сейчас --- */
@@ -169,11 +167,9 @@ var I18N = {
     "edu.title":       "Education & languages",
     "edu.formal":      "Formal education",                /* ⚠ ПРОВЕРИТЬ */
     "edu.uni":         "Dostoevsky Omsk State University",
-    "edu.uniCity":     "Omsk",
     "edu.uniRole":     "Bachelor's degree",
     "edu.uniDesc":     "Accounting, Analysis and Audit.",
-    "edu.college":     "Chemical-Mechanical College",
-    "edu.collegeCity": "Pavlodar",
+    "edu.college":     "PavlodarChemical-Mechanical College",
     "edu.collegeRole": "Vocational diploma",              /* ⚠ ПРОВЕРИТЬ */
     "edu.collegeDesc": "Chemical Industry Technician.",
     "edu.courses":     "Courses",                         /* ⚠ ПРОВЕРИТЬ */
@@ -229,7 +225,7 @@ var I18N = {
 
     /* --- Контакты --- */
     "contact.eyebrow": "Contact",                         /* ⚠ ПРОВЕРИТЬ */
-    "contact.title":   "Open to small design projects. Tell me about your project — I'll reply on Telegram.",
+    "contact.title":   "Open to various design projects.",
     "footer.copy":     "© 2026 Valeriya Semenyuk"
   }
 };
@@ -265,7 +261,7 @@ var I18N = {
     });
 
     // состояние кнопок переключателя
-    var buttons = document.querySelectorAll(".lang__btn");
+    var buttons = document.querySelectorAll(".langswitch__btn");
     Array.prototype.forEach.call(buttons, function (btn) {
       var active = btn.getAttribute("data-lang") === lang;
       btn.classList.toggle("is-active", active);
@@ -287,7 +283,7 @@ var I18N = {
   }
 
   document.addEventListener("click", function (e) {
-    var btn = e.target.closest ? e.target.closest(".lang__btn") : null;
+    var btn = e.target.closest ? e.target.closest(".langswitch__btn") : null;
     if (!btn) return;
     apply(btn.getAttribute("data-lang"));
   });

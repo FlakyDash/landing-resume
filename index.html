@@ -50,7 +50,6 @@
     <div class="nav__menu" id="nav-menu">
       <nav aria-label="Разделы">
         <ul class="nav__links">
-          <li><a href="#now"        data-i18n="nav.now">Чем занимаюсь сейчас</a></li>
           <li><a href="#portfolio"  data-i18n="nav.portfolio">Портфолио</a></li>
           <li><a href="#education"  data-i18n="nav.education">Образование и языки</a></li>
           <li><a href="#skills"     data-i18n="nav.skills">Навыки</a></li>
@@ -60,9 +59,9 @@
       </nav>
 
       <div class="nav__actions">
-        <div class="lang" role="group" aria-label="Язык / Language">
-          <button class="lang__btn is-active" type="button" data-lang="ru">RU</button>
-          <button class="lang__btn" type="button" data-lang="en">EN</button>
+        <div class="langswitch" role="group" aria-label="Язык / Language">
+          <button class="langswitch__btn is-active" type="button" data-lang="ru">RU</button>
+          <button class="langswitch__btn" type="button" data-lang="en">EN</button>
         </div>
 
         <a class="nav__cta" href="https://t.me/FlakyDash" target="_blank" rel="noopener noreferrer"
@@ -79,11 +78,6 @@
   <!-- ============ 1. HERO ============ -->
   <section class="hero" aria-labelledby="hero-title">
     <div class="shell hero__grid">
-
-      <p class="masthead reveal">
-        <span class="masthead__name" data-i18n="nav.brand">Валерия&nbsp;Семенюк</span>
-        <span class="masthead__role">No-code&nbsp;web&nbsp;design</span>
-      </p>
 
       <div class="hero__text">
         <h1 class="hero__title reveal" id="hero-title" data-i18n-html="hero.title">
@@ -117,7 +111,7 @@
 
 
   <!-- ============ 2. ЧЕМ ЗАНИМАЮСЬ СЕЙЧАС (без номера) ============ -->
-  <section class="section section--now" id="now" aria-labelledby="now-title">
+  <section class="section section--now" aria-labelledby="now-title">
     <div class="shell now__grid">
 
       <!-- Фото зеркально hero: там портрет справа, здесь слева -->
@@ -194,7 +188,7 @@
              href="https://www.figma.com/design/hiru78xo3ewp2nG8RT1Ufs/For-test?node-id=0-1"
              target="_blank" rel="noopener noreferrer">
             <span class="work__frame" data-placeholder="Скриншот макета">
-              <img src="assets/Landing-Yandex.png"
+              <img src="assets/portfolio/Landing-Yandex.png"
                    alt="Макет лендинга Yandex Pet Day"
                    width="1440" height="899" loading="lazy" decoding="async">
             </span>
@@ -208,7 +202,7 @@
              href="https://www.figma.com/design/hiru78xo3ewp2nG8RT1Ufs/For-test?node-id=1-379"
              target="_blank" rel="noopener noreferrer">
             <span class="work__frame" data-placeholder="Скриншот макета">
-              <img src="assets/Design-Keyberry.png"
+              <img src="assets/portfolio/Design-Keyberry.png"
                    alt="Макет главной страницы KEYBERRY"
                    width="1440" height="899" loading="lazy" decoding="async">
             </span>
@@ -225,12 +219,11 @@
         <h3 class="subhead reveal" data-i18n="pf.tilda">Сайты на Tilda</h3>
 
         <div class="works">
-          <!-- TODO: заменить на реальный скриншот (assets/portfolio/tilda-1.jpg) -->
           <a class="work reveal"
              href="https://vs.designs.tilda.ws/taro_vosk_"
              target="_blank" rel="noopener">
             <span class="work__frame" data-placeholder="Скриншот сайта">
-              <img src="assets/portfolio/tilda-1.jpg"
+              <img src="assets/portfolio/tilda-1.png"
                    alt="Сайт на Tilda: личный бренд таролога"
                    width="1440" height="900" loading="lazy" decoding="async">
             </span>
@@ -240,12 +233,11 @@
             </span>
           </a>
 
-          <!-- TODO: заменить на реальный скриншот (assets/portfolio/tilda-2.jpg) -->
           <a class="work reveal"
              href="https://vs.designs.tilda.ws/fitness-pro"
              target="_blank" rel="noopener">
             <span class="work__frame" data-placeholder="Скриншот сайта">
-              <img src="assets/portfolio/tilda-2.jpg"
+              <img src="assets/portfolio/tilda-2.png"
                    alt="Сайт на Tilda: тренажёрный зал"
                    width="1440" height="900" loading="lazy" decoding="async">
             </span>
@@ -326,7 +318,7 @@
             <div class="tl__body">
               <h4 class="tl__place">
                 <span data-i18n="edu.uni">Омский государственный университет им.&nbsp;Ф.&nbsp;М.&nbsp;Достоевского</span>
-                <span class="tl__city" data-i18n="edu.uniCity">Омск</span>
+                
               </h4>
               <p class="tl__role" data-i18n="edu.uniRole">Бакалавр</p>
               <p class="tl__desc" data-i18n="edu.uniDesc">Бухгалтерский учёт, анализ и аудит.</p>
@@ -336,8 +328,7 @@
             <p class="tl__years">2016</p>
             <div class="tl__body">
               <h4 class="tl__place">
-                <span data-i18n="edu.college">Химико-механический колледж</span>
-                <span class="tl__city" data-i18n="edu.collegeCity">Павлодар</span>
+                <span data-i18n="edu.college">Павлодарский химико-механический колледж</span>
               </h4>
               <p class="tl__role" data-i18n="edu.collegeRole">Среднее профессиональное</p>
               <p class="tl__desc" data-i18n="edu.collegeDesc">Техник-технолог химической промышленности.</p>

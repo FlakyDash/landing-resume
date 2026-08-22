@@ -269,6 +269,6 @@
 
   // вернулись на широкий экран — панель больше не нужна
   window.addEventListener("resize", function () {
-    if (window.innerWidth > 1180) setOpen(false);
+    if (window.innerWidth > 1200) setOpen(false);
   });
 })();
