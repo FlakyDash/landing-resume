@@ -559,7 +559,116 @@ a { color: inherit; }
   color: var(--muted);
 }
 
-/* ---------- 4. Контакты ---------- */
+/* ---------- 4. Образование и языки ---------- */
+
+/* Мелкий подзаголовок внутри секции — та же подача, что у .tl__role */
+.subhead {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.edu__group + .edu__group {
+  margin-top: clamp(2.75rem, 5vw, 4rem);
+}
+
+.edu__group .timeline {
+  margin-top: 1.4rem;
+}
+
+/* записи об учёбе короче рабочих — сжимаем ритм */
+.timeline--edu .tl {
+  padding-block: clamp(1.25rem, 2.4vw, 1.75rem);
+}
+
+.langs {
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+}
+
+.lang-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  margin-top: 1.6rem;
+}
+
+.lang {
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--line);
+}
+
+.lang__name {
+  display: block;
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: clamp(1.15rem, 1rem + 0.6vw, 1.45rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.lang__level {
+  display: block;
+  margin-top: 0.45rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* ---------- 5. Навыки ---------- */
+
+/* заголовок без надстрочного номера — верхний отступ не нужен */
+.section__title--solo {
+  margin-top: 0;
+}
+
+.skillset {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(2.25rem, 5vw, 4rem);
+  margin-top: clamp(2.25rem, 4vw, 3.25rem);
+}
+
+/* Пункты здесь длинные (до 449px при колонке 494px) — в инлайн-поток
+   они ложатся по одному в строку с рваным краем. Тот же набор: та же
+   типографика и та же терракотовая точка, но столбцом. */
+.skillset .skills {
+  display: grid;
+  gap: 0.7rem;
+  margin-top: 1.4rem;
+}
+
+.skillset .skills li {
+  display: grid;
+  grid-template-columns: 4px minmax(0, 1fr);
+  gap: 0.9rem;
+  align-items: start;
+  line-height: 1.45;
+}
+
+.skillset .skills li::before {
+  content: "";
+  width: 4px;
+  height: 4px;
+  margin-top: 0.6em;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.skillset .skills li:not(:last-child)::after {
+  content: none;
+}
+
+/* длинные формулировки капсом читаются тяжело — тут обычный регистр */
+.skills--sentence {
+  text-transform: none;
+  letter-spacing: 0.01em;
+  font-size: 0.95rem;
+  font-weight: 400;
+}
+
+/* ---------- 6. Контакты ---------- */
 
 .section--contact {
   padding-block: clamp(5rem, 11vw, 10rem);
@@ -699,11 +808,15 @@ a { color: inherit; }
   }
 
   .tl {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0.5rem;
   }
 
   .tl__years { padding-top: 0; }
+
+  .skillset {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 @media (max-width: 560px) {
@@ -731,6 +844,15 @@ a { color: inherit; }
     display: block;
     margin-left: 0;
     margin-top: 0.3rem;
+  }
+
+  .lang-list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .lang {
+    padding-block: 1.1rem;
   }
 
   /* контакты в столбик — точка-разделитель тут не нужна */
