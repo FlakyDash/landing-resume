@@ -1067,7 +1067,23 @@ a.work:hover .work__arrow { transform: translate(2px, -2px); }
   position: relative;
 }
 
+/* тот же контур, что у hero и «Сейчас», смещён в правый верхний угол */
+.contact__ring {
+  position: absolute;
+  z-index: 1;
+  inset: -1.2rem -1.2rem auto auto;
+  width: 76%;
+  aspect-ratio: 1;
+  border: 1px solid rgba(209, 164, 74, 0.45);
+  border-radius: 3px;
+  animation: drift 20s ease-in-out infinite alternate;
+}
+
 .contact__portrait :is(img, video) {
+  /* position + z-index, чтобы контур остался позади кадра:
+     без них абсолютный .contact__ring рисовался бы поверх */
+  position: relative;
+  z-index: 2;
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
@@ -1218,6 +1234,11 @@ a.work:hover .work__arrow { transform: translate(2px, -2px); }
   .contact__portrait {
     max-width: 260px;
     margin-top: clamp(2.5rem, 6vw, 3.5rem);
+  }
+
+  .contact__ring {
+    inset: -0.9rem -0.9rem auto auto;
+    width: 60%;
   }
 
   .hero__grid {
@@ -1378,7 +1399,8 @@ a.work:hover .work__arrow { transform: translate(2px, -2px); }
   }
 
   .hero__ring,
-  .now__ring { animation: none; }
+  .now__ring,
+  .contact__ring { animation: none; }
 
   /* Общее правило выше сжимает анимацию до 0.01ms — бегущая строка
      мгновенно «домотала» бы себя до конца. Гасим её явно, чтобы
