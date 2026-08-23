@@ -272,3 +272,104 @@
     if (window.innerWidth > 1200) setOpen(false);
   });
 })();
+
+
+/* =========================================================
+   Кастомный курсор.
+
+   Точка следует за мышью кадр в кадр, кольцо догоняет её,
+   смещаясь на часть расстояния каждый кадр. При наведении на
+   интерактивное кольцо растёт и наливается акцентом.
+
+   На тач-устройствах слои не создаются вовсе — там кастомный
+   курсор только мешал бы.
+   ========================================================= */
+
+(function () {
+  "use strict";
+
+  var fine = window.matchMedia("(hover: hover) and (pointer: fine)");
+  if (!fine.matches) return;
+
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  var HOVER_SEL = "a, button, [role=\"button\"], .work, .pile__item";
+
+  function layer(name) {
+    var el = document.createElement("div");
+    el.className = name;
+    el.setAttribute("aria-hidden", "true");
+
+    var shape = document.createElement("span");
+    shape.className = name + "__shape";
+    el.appendChild(shape);
+
+    document.body.appendChild(el);
+    return el;
+  }
+
+  var dot = layer("cursor-dot");
+  var ring = layer("cursor-ring");
+
+  var x = 0, y = 0;      // куда указывает мышь
+  var rx = 0, ry = 0;    // где сейчас кольцо
+  var started = false;
+
+  function place(el, px, py) {
+    el.style.transform = "translate3d(" + px + "px, " + py + "px, 0)";
+  }
+
+  function show(on) {
+    dot.classList.toggle("is-ready", on);
+    ring.classList.toggle("is-ready", on);
+  }
+
+  document.addEventListener("pointermove", function (e) {
+    // событиями от пальца или пера кастомный курсор не управляем
+    if (e.pointerType && e.pointerType !== "mouse") return;
+
+    x = e.clientX;
+    y = e.clientY;
+
+    if (!started) {
+      started = true;
+      rx = x;
+      ry = y;
+      place(ring, rx, ry);
+      show(true);
+    }
+
+    place(dot, x, y);
+  }, { passive: true });
+
+  function frame() {
+    // при prefers-reduced-motion отставания нет: кольцо встаёт сразу
+    var k = reduced.matches ? 1 : 0.18;
+
+    rx += (x - rx) * k;
+    ry += (y - ry) * k;
+    place(ring, rx, ry);
+
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+
+  /* Пересчитываем состояние на каждом pointerover: так переход
+     между вложенными элементами внутри одной ссылки не мигает. */
+  document.addEventListener("pointerover", function (e) {
+    var target = e.target;
+    var on = !!(target && target.closest && target.closest(HOVER_SEL));
+    dot.classList.toggle("is-hover", on);
+    ring.classList.toggle("is-hover", on);
+  });
+
+  // мышь ушла за пределы окна — прячем, вернулась — показываем
+  document.documentElement.addEventListener("pointerleave", function () {
+    show(false);
+  });
+
+  document.documentElement.addEventListener("pointerenter", function () {
+    if (started) show(true);
+  });
+})();

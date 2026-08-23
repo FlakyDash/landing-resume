@@ -1387,3 +1387,77 @@ a.work:hover .work__arrow { transform: translate(2px, -2px); }
     transform: none !important;
   }
 }
+
+
+/* =========================================================
+   Кастомный курсор
+
+   Два слоя: точка следует за мышью мгновенно, кольцо —
+   с небольшим отставанием (сглаживание считается в script.js).
+   Включается только там, где есть настоящая мышь: на тач-экранах
+   слои вообще не создаются, системное поведение остаётся как было.
+   ========================================================= */
+
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  pointer-events: none;   /* курсор не должен перехватывать клики */
+  opacity: 0;
+  transition: opacity 0.25s var(--ease);
+  will-change: transform;
+}
+
+/* появляются только после первого движения мыши,
+   иначе на загрузке висели бы в углу экрана */
+.cursor-dot.is-ready,
+.cursor-ring.is-ready { opacity: 1; }
+
+.cursor-dot__shape {
+  display: block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translate(-50%, -50%);
+}
+
+.cursor-ring__shape {
+  display: block;
+  width: 38px;
+  height: 38px;
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+  background-color: transparent;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 0.28s var(--ease),
+              background-color 0.28s var(--ease);
+}
+
+/* над ссылкой, кнопкой или карточкой кольцо растёт и наливается */
+.cursor-ring.is-hover .cursor-ring__shape {
+  transform: translate(-50%, -50%) scale(1.7);
+  background-color: rgba(226, 135, 74, 0.16);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html,
+  body { cursor: none; }
+
+  /* элементы со своим курсором тоже гасим, иначе системный
+     возвращается поверх кастомного */
+  a,
+  button,
+  [role="button"],
+  .pile__item,
+  .pile__item.is-dragging { cursor: none; }
+}
+
+/* Подстраховка: если по какой-то причине слои окажутся в разметке
+   на тач-устройстве, они останутся невидимыми */
+@media not all and (hover: hover) and (pointer: fine) {
+  .cursor-dot,
+  .cursor-ring { display: none; }
+}
