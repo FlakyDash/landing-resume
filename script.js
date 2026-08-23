@@ -92,17 +92,23 @@
   var slots = document.querySelectorAll("[data-placeholder]");
 
   Array.prototype.forEach.call(slots, function (slot) {
-    var img = slot.querySelector("img");
-    if (!img) return;
+    var media = slot.querySelector("img, video");
+    if (!media) return;
 
     var miss = function () { slot.classList.add("is-missing"); };
     var hit  = function () { slot.classList.remove("is-missing"); };
 
-    // картинка могла отвалиться ещё до навешивания обработчика
-    if (img.complete && img.naturalWidth === 0) miss();
+    media.addEventListener("error", miss);
 
-    img.addEventListener("error", miss);
-    img.addEventListener("load", hit);
+    if (media.tagName === "VIDEO") {
+      // у видео нет complete/naturalWidth — ждём первый кадр
+      media.addEventListener("loadeddata", hit);
+      return;
+    }
+
+    // картинка могла отвалиться ещё до навешивания обработчика
+    if (media.complete && media.naturalWidth === 0) miss();
+    media.addEventListener("load", hit);
   });
 })();
 
@@ -372,4 +378,67 @@
   document.documentElement.addEventListener("pointerenter", function () {
     if (started) show(true);
   });
+})();
+
+
+/* =========================================================
+   Видеопортреты и prefers-reduced-motion.
+
+   Кому движение мешает — видео замирает на первом кадре и
+   ведёт себя как обычное фото. Controls намеренно не включаем.
+   Настройку читаем на лету: если её поменяют, видео сразу
+   остановится или поедет дальше, без перезагрузки.
+   ========================================================= */
+
+(function () {
+  "use strict";
+
+  var videos = document.querySelectorAll("video[autoplay]");
+  if (!videos.length) return;
+
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  function freeze(video) {
+    video.pause();
+    // на нулевом кадре картинка нагляднее, чем на случайном месте
+    if (video.currentTime > 0) {
+      try { video.currentTime = 0; } catch (err) {}
+    }
+  }
+
+  function apply() {
+    Array.prototype.forEach.call(videos, function (video) {
+      if (reduced.matches) {
+        freeze(video);
+      } else {
+        var started = video.play();
+        // play() отдаёт промис и может отклониться — например, если
+        // браузер решил не проигрывать; для нас это не ошибка
+        if (started && typeof started.catch === "function") {
+          started.catch(function () {});
+        }
+      }
+    });
+  }
+
+  Array.prototype.forEach.call(videos, function (video) {
+    /* autoplay уже стоит в разметке, поэтому браузер попробует
+       запустить видео сам — перехватываем и сразу тормозим. */
+    video.addEventListener("play", function () {
+      if (reduced.matches) freeze(video);
+    });
+
+    // первый кадр загрузился — замираем на нём
+    video.addEventListener("loadeddata", function () {
+      if (reduced.matches) freeze(video);
+    });
+  });
+
+  apply();
+
+  if (typeof reduced.addEventListener === "function") {
+    reduced.addEventListener("change", apply);
+  } else if (typeof reduced.addListener === "function") {
+    reduced.addListener(apply);
+  }
 })();

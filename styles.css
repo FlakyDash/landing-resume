@@ -55,7 +55,8 @@ h1, h2, h3, p, figure, ul, ol {
 
 ul, ol { list-style: none; }
 
-img {
+img,
+video {
   display: block;
   max-width: 100%;
   height: auto;
@@ -494,7 +495,7 @@ main > section {
   margin-top: clamp(1rem, 5vw, 4rem);
 }
 
-.hero__portrait img {
+.hero__portrait :is(img, video) {
   position: relative;
   z-index: 2;
   width: 100%;
@@ -557,7 +558,7 @@ main > section {
   margin-top: clamp(0.5rem, 3vw, 2.5rem);
 }
 
-.now__portrait img {
+.now__portrait :is(img, video) {
   position: relative;
   z-index: 2;
   width: 100%;
@@ -690,7 +691,7 @@ a.work:hover .work__arrow { transform: translate(2px, -2px); }
    Класс проставляет script.js, когда файл не найден: вместо
    «битой» картинки остаётся штриховка кадра и подпись. */
 
-.is-missing img { display: none; }
+.is-missing :is(img, video) { display: none; }
 
 .is-missing::after {
   content: attr(data-placeholder);
@@ -1066,7 +1067,7 @@ a.work:hover .work__arrow { transform: translate(2px, -2px); }
   position: relative;
 }
 
-.contact__portrait img {
+.contact__portrait :is(img, video) {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
@@ -1235,7 +1236,7 @@ a.work:hover .work__arrow { transform: translate(2px, -2px); }
     max-width: 340px;
   }
 
-  .hero__portrait img {
+  .hero__portrait :is(img, video) {
     aspect-ratio: 1 / 1;
   }
 
@@ -1259,7 +1260,7 @@ a.work:hover .work__arrow { transform: translate(2px, -2px); }
     max-width: 320px;
   }
 
-  .now__portrait img {
+  .now__portrait :is(img, video) {
     aspect-ratio: 1 / 1;
   }
 
