@@ -169,7 +169,7 @@ var I18N = {
     "edu.uni":         "Dostoevsky Omsk State University",
     "edu.uniRole":     "Bachelor's degree",
     "edu.uniDesc":     "Accounting, Analysis and Audit.",
-    "edu.college":     "PavlodarChemical-Mechanical College",
+    "edu.college":     "Pavlodar Chemical-Mechanical College",
     "edu.collegeRole": "Vocational diploma",              /* ⚠ ПРОВЕРИТЬ */
     "edu.collegeDesc": "Chemical Industry Technician.",
     "edu.courses":     "Courses",                         /* ⚠ ПРОВЕРИТЬ */
