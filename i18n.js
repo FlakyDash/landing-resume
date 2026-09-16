@@ -52,6 +52,9 @@ var I18N = {
     "pf.tilda":  "Сайты на Tilda",
     "pf.tilda1": "Личный бренд — Таролог",
     "pf.tilda2": "Тренажёрный зал — Фитнес-профи",
+    "pf.vercel":     "Сайты на Vercel",
+    "pf.vercel1":    "Лендинг-визитка Fluffy Design",
+    "pf.vercelSoon": "Сайт в разработке",
     "pf.cscart": "Визуалы сайтов на CS-Cart",
     "pf.note":   "Я с нуля разрабатывала дизайн-системы для сайтов yam.kz, ymusic.kz, kawai.kz, rolandmusic.kz, beyerdynamic.kz, pioneerdj.kz К сожалению, большинство из них владелец не сохранил, и они уже не работают. Это все что  у меня осталось ;(",
 
@@ -157,6 +160,9 @@ var I18N = {
     "pf.tilda":  "Tilda websites",
     "pf.tilda1": "Personal brand — Tarot reader",
     "pf.tilda2": "Gym — Fitness Pro",
+    "pf.vercel":     "Vercel sites",
+    "pf.vercel1":    "Landing page — Fluffy Design",
+    "pf.vercelSoon": "Coming soon",
     "pf.cscart": "CS-Cart site visuals",                             /* ⚠ ПРОВЕРИТЬ */
     /* ⚠ ПРОВЕРИТЬ: первое и последнее предложение — мой перевод,
        середина взята из присланного списка */

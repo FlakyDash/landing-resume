@@ -680,6 +680,26 @@ a.work {
 a.work:hover .work__meta { color: var(--accent); }
 a.work:hover .work__arrow { transform: translate(2px, -2px); }
 
+/* Заглушка под будущий сайт: та же пропорция кадра, что у карточек,
+   но пунктир, приглушённый текст и никакой реакции на наведение */
+.work-stub__frame {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 10;
+  padding: 1rem;
+  border: 1px dashed var(--line);
+  border-radius: 3px;
+}
+
+.work-stub__text {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--muted);
+}
+
 /* карточка без ссылки — ждёт данных */
 .work--soon .work__meta {
   font-size: 0.72rem;
